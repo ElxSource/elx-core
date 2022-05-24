@@ -1,0 +1,8 @@
+---
+tasks:
+  - name: Trace
+    debug:
+        msg: "Hola mundo"
+  - name: "Do something"
+    echo:
+        msg: "Soy un test" 

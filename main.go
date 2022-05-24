@@ -1,26 +1,30 @@
 package main
 
-import ("fmt"
-"gopkg.in/yaml.v3")
+import (
+	"fmt"
+	"os"
+	"gopkg.in/yaml.v3"
+)
 
 
+type Generic interface{}
 
-var data = `---
-tasks:
-   - name: Trace
-     debug:
-        msg: "Hola mundo"
-   - name: "Do something"
-     echo: 
-        msg: "Soy un test"
-`
 func main(){
-     fmt.Print("Hola mahjo")
-     containerData := map[string]interface{}
-     err := yaml.Unmarshal([]byte(data), &containerData)
-     if err != nil {
-	     fmt.Println("KO:"+ err)
-     }
-     fmt.Println(containerData)
+     loadContent("./demo.yml")
 }
 
+func checkError(e error, contents...string) {
+    if e != nil {
+	fmt.Println(contents)
+        panic(e)
+    }
+}
+
+func loadContent(path string){
+     data, err := os.ReadFile(path)
+     checkError(err, "Reading file: " + path)
+     containerData := map[string]Generic{}
+     err2 := yaml.Unmarshal(data, &containerData)
+     checkError(err2, "Unmarshal yaml from " + path)
+     fmt.Println(containerData)
+}
