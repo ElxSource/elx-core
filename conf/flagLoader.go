@@ -20,3 +20,4 @@ func LoadFlags() string {
 	log.Println(*path)
 	return *path
 }
+2
