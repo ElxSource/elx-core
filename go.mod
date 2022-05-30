@@ -1,4 +1,4 @@
-module github.com/jose78/gansible
+module https://github.com/ElxSource/elx-core
 
 go 1.18
 
