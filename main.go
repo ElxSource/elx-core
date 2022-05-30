@@ -5,6 +5,7 @@ import (
 	"os"
 	"strings"
 
+	"github.com/jose78/gansible/conf"
 	"golang.org/x/exp/maps"
 	"gopkg.in/yaml.v3"
 )
@@ -14,13 +15,16 @@ type Generic interface{}
 var err error
 
 func main() {
-	containerData := loadContent("test/demo.yml")
+	path := conf.LoadFlags()
+	containerData := loadContent(path)
 	log.Println(containerData["tasks"])
 
 	for _, item := range containerData["tasks"].([]interface{}) {
 		evaluateTask(item)
 	}
 }
+
+
 
 func checkError(e error, description string) {
 	if e != nil {
@@ -47,4 +51,12 @@ func evaluateTask(task interface{}) {
 	}
 	module, key := selectTask(task.(map[string]interface{}))
 	log.Printf("key: %s, module: %s", key, module)
+
+	// cache := conf.GetInstance()
+	// cache.Set("debug", reflect.TypeOf(new(Debug)))
+	//
+	// instance ,_ := cache.Get("debug")
+	// debug2 := (&instance).(Debug)
+	//
+	// log.Printf(debug2.msg)
 }
