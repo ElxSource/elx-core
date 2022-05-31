@@ -5,7 +5,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/jose78/gansible/conf"
+	"github.com/ElxSource/elx-core/conf"
 	"golang.org/x/exp/maps"
 	"gopkg.in/yaml.v3"
 )
@@ -23,8 +23,6 @@ func main() {
 		evaluateTask(item)
 	}
 }
-
-
 
 func checkError(e error, description string) {
 	if e != nil {

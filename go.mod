@@ -1,4 +1,4 @@
-module https://github.com/ElxSource/elx-core
+module github.com/ElxSource/elx-core
 
 go 1.18
 
